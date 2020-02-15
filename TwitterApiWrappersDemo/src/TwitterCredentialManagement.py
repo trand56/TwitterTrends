@@ -8,7 +8,7 @@ ACCESS_TOKEN_SECRET_ENV_VAR_NAME = "TWITTER_TRENDS_ACCESS_TOKEN_SECRET"
 missingEnvVarErrorStr = "{} environment variable is not defined"
 
 
-def fetchAPICredentials():
+def fetchApiCredentials():
     apiKey = os.environ.get(API_KEY_ENV_VAR_NAME)
     assert apiKey != None, missingEnvVarErrorStr.format("API Key")
 

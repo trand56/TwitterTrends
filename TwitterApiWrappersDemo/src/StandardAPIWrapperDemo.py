@@ -7,7 +7,7 @@ TEST_TWITTER_USERNAME = "ScottSSalisbur1"
 if __name__ == '__main__':
     print("running tweepy demo program")
 
-    apiKey, apiSecretKey, accessToken, accessTokenSecret = tcm.fetchAPICredentials()
+    apiKey, apiSecretKey, accessToken, accessTokenSecret = tcm.fetchApiCredentials()
 
     auth = tweepy.OAuthHandler(apiKey, apiSecretKey)
     auth.set_access_token(accessToken, accessTokenSecret)
