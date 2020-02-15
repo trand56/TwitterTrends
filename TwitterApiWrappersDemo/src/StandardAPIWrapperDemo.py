@@ -25,4 +25,16 @@ if __name__ == '__main__':
     print("Account creation date= " + str(user.created_at))
     print("ID String= " + user.id_str)
 
-    # todo add toy trend fetch
+
+    print("\n\nTrend information:")
+    worldwideLocCode= 1
+    trendsResult = twitterStandardApi.trends_place(worldwideLocCode)
+    for trend in trendsResult[0]["trends"]:
+        trendName = trend["name"]
+        trendPop = trend["tweet_volume"]
+        if trendPop is None:
+            trendPop = "unknown number of"
+        else:
+            trendPop = str(trendPop)
+
+        print("Trend " + trend["name"] + " was used in " + trendPop + " tweets")
