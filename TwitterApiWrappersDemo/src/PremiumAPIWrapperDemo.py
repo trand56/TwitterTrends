@@ -19,6 +19,12 @@ PREMIUM_FULL_ARCHIVE_ENDPOINT = TWITTER_PREMIUM_API_ENDPOINT_FORMAT.format(TWITT
 
 
 def getPremiumEndpointCreds(endpointType):
+    """
+    fetches credentials for some premium endpoint using an api key and secret
+    which are already in the system's environment variables
+    :parameter endpointType which premium endpoint to get the credentials for (30 day or full archive)
+    :return credentials for some premium endpoint
+    """
     os.environ[ENDPOINT_ENV_VAR] = endpointType;
     searchArgs = st.load_credentials(filename="NoCredsFile.yaml", account_type="premium", yaml_key="dummyYamlKey")
     # cleaning up this temporary environment variable to avoid causing a side effect

@@ -9,6 +9,10 @@ missingEnvVarErrorStr = "{} environment variable is not defined"
 
 
 def fetchApiCredentials():
+    """
+    loads standard api credentials from where they're stored in system environment variables
+    :return: credentials for the standard api
+    """
     apiKey = os.environ.get(API_KEY_ENV_VAR_NAME)
     assert apiKey != None, missingEnvVarErrorStr.format("API Key")
 
