@@ -20,10 +20,7 @@ PREMIUM_FULL_ARCHIVE_ENDPOINT = TWITTER_PREMIUM_API_ENDPOINT_FORMAT.format(TWITT
 
 def getPremiumEndpointCreds(endpointType):
     os.environ[ENDPOINT_ENV_VAR] = endpointType;
-
     searchArgs = st.load_credentials(filename="NoCredsFile.yaml", account_type="premium", yaml_key="dummyYamlKey")
-    print(searchArgs)
-
     # cleaning up this temporary environment variable to avoid causing a side effect
     del os.environ[ENDPOINT_ENV_VAR]
 
@@ -32,9 +29,9 @@ def getPremiumEndpointCreds(endpointType):
 
 if __name__ == '__main__':
     print("running search-tweets demo program")
-
-    print(os.environ.get("SEARCHTWEETS_ACCOUNT_TYPE"))
-    print(os.environ.get("SEARCHTWEETS_CONSUMER_KEY"))
-    print(os.environ.get("SEARCHTWEETS_CONSUMER_SECRET"))
-
     monthSearchArgs = getPremiumEndpointCreds(PREMIUM_30_DAY_ENDPOINT)
+
+    # max_results must stay 100 b/c we're using a sandbox account
+    coronavirusRule = st.gen_rule_payload("lang:en coronavirus", from_date="2020-02-01")
+    tweets = st.collect_results(coronavirusRule, max_results=100, result_stream_args=monthSearchArgs)
+    [print(tweet.all_text, end="\n") for tweet in tweets[0:50]]
